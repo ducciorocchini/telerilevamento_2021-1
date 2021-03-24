@@ -29,3 +29,67 @@ cl <-colorRampPalette(c("blue", "green", "red", "yellow", "white")) (100)
 plot(p224r63_2011, col=cl)
 
 
+#day3
+library(raster)
+setwd("C:/lab/")
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+p224r63_2011
+plot(p224r63_2011)
+cl <-colorRampPalette(c("blue", "green", "red", "yellow", "white")) (100)
+#Bande Landsat
+#B1:blu
+#B2:verde
+#B3:rosso
+#B4:infrarosso vicino
+#B5:infrarosso medio
+#B6:infrarosso termico
+#B7:infrarosso medio
+#dev.off ripulisce la finestra grafica 
+dev.off()
+# spieghiamo che una certa banda va legata al dataset con la funzione $
+# $ per legare due blocchi
+plot(p224r63_2011$B1_sre)
+#plot Banda 1 con una scala di colori decisa dall'operatore
+cl <-colorRampPalette(c("blue", "green", "red", "yellow", "white")) (100)
+plot(p224r63_2011$B2_sre, col=cl)
+plot(p224r63_2011$B2_sre)
+# par stabilisce come fare il plottaggio e mettere due bande una accanto all'altra evitando immagini sovrascritte
+# 1 riga 2 colonne
+par(mfrow=c(1,2))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+# 2 righe 1 colonna
+par(mfrow=c(2,1))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+#se uso prima le colonne uso mfcol invece che mfrow
+par(mfcol=c(2,1))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+#plottiamo le prime 4 bande di Landsat
+par(mfrow=c(4,1))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+plot(p224r63_2011$B3_sre)
+plot(p224r63_2011$B4_sre)
+# set due righe e due colonne 
+par(mfrow=c(2,2))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+plot(p224r63_2011$B3_sre)
+plot(p224r63_2011$B4_sre)
+par(mfrow=c(2,2))
+# una scala di colori più vicini e simili alla singola banda, per tutte e 4 le bande
+# scala di colori dal "dark blue" al "light blue" per la banda del blu
+clb <-colorRampPalette(c("dark blue", "blue", "light blue")) (100)
+plot(p224r63_2011$B1_sre,col=clb)
+# scala di colori dal "dark green" al "light green" per la banda del verde
+clg <-colorRampPalette(c("dark green", "green", "light green")) (100)
+plot(p224r63_2011$B1_sre,col=clg)
+# scala di colori dal "dark red" al "pink" per la banda del rosso
+clr<-colorRampPalette(c("dark red", "red", "pink")) (100)
+plot(p224r63_2011$B1_sre,col=clr)
+# scala di colori dal "red" al "yellow" per la banda dell'infrarosso
+clnir<-colorRampPalette(c("red", "orange", "yellow")) (100)
+plot(p224r63_2011$B1_sre,col=clnir)
+
