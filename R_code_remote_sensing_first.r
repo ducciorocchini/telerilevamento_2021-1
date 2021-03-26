@@ -93,3 +93,52 @@ plot(p224r63_2011$B1_sre,col=clr)
 clnir<-colorRampPalette(c("red", "orange", "yellow")) (100)
 plot(p224r63_2011$B1_sre,col=clnir)
 
+
+# day 4
+# data by RGB plotting
+library (raster)
+setwd("C:/lab/")
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+p224r63_2011
+#Bande Landsat
+#B1:blu
+#B2:verde
+#B3:rosso
+#B4:infrarosso vicino
+#B5:infrarosso medio
+#B6:infrarosso termico
+#B7:infrarosso medio
+# plot RGB viene montato lo schema RGB su un oggetto raster multilayered
+plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
+# plot RGB ma con infrarosso al posto del blu 
+plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
+# monto la banda 4 sul green 
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
+# monto la banda 4 sul blu
+plotRGB(p224r63_2011,r=3,g=2,b=4,stretch="Lin")
+# multifraim 2x2 con le 4 bande
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
+plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=2,b=4,stretch="Lin")
+#funzione pdf per convertire un'immagine satellitare in pdf
+pdf("ilmioprimopdf.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
+plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=2,b=4,stretch="Lin")
+dev.off()
+# stretch "hist" e non lineare
+#funzione non lineare
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="hist")
+# par con colori naturali, falsi colori con funzione lineare e falsi colori con funzione non lineare
+# par 3 righe 1 colonna
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
+plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="hist")
+
+
