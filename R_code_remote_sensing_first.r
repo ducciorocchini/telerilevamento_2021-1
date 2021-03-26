@@ -108,15 +108,18 @@ p224r63_2011
 #B5:infrarosso medio
 #B6:infrarosso termico
 #B7:infrarosso medio
-# plot RGB viene montato lo schema RGB su un oggetto raster multilayered
+# plot RGB viene montato lo schema RGB(red green blue) su un oggetto raster multilayered (multibanda)
+# banda 3 sul rosso, banda 2 sul verde, banda 1 sul blu
+# immagine satellitare a colori naturali
 plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
-# plot RGB ma con infrarosso al posto del blu 
+# plot RGB ma con banda 4(infrarosso) sul rosso, banda 3 sul verde, banda 2 sul blu
 plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
-# monto la banda 4 sul green 
+# plot RGB ma con banda 4 sul verde, banda 3 sul rosso, banda 2 sul blu 
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
 # monto la banda 4 sul blu
 plotRGB(p224r63_2011,r=3,g=2,b=4,stretch="Lin")
-# multifraim 2x2 con le 4 bande
+# multiframe 2x2 con le 4 bande con la funzione par
+#par permtte il settaggio dei parametri grafici es. due righe due colonne
 par(mfrow=c(2,2))
 plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
 plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
@@ -130,8 +133,8 @@ plotRGB(p224r63_2011,r=4,g=3,b=2,stretch="Lin")
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
 plotRGB(p224r63_2011,r=3,g=2,b=4,stretch="Lin")
 dev.off()
-# stretch "hist" e non lineare
-#funzione non lineare
+# funzione diversa, non lineare, molto più accentuata al centro
+#stretch "hist" non lineare anzichè stretch "Lin" lineare
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="hist")
 # par con colori naturali, falsi colori con funzione lineare e falsi colori con funzione non lineare
@@ -140,5 +143,11 @@ par(mfrow=c(3,1))
 plotRGB(p224r63_2011,r=3,g=2,b=1,stretch="Lin")
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="Lin")
 plotRGB(p224r63_2011,r=3,g=4,b=2,stretch="hist")
+#installazione pacchetto RStoolbox tramite funzione install.packages
+#virgolette nella parentesi perchè stiamo uscendo da R e portando in R successivamente il pacchetto
+install.packages("RStoolbox")
+#no virgolette perchè oramai RStoolbox è dentro R 
+library(RStoolbox)
+
 
 
